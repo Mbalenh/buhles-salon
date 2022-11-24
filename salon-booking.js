@@ -42,9 +42,40 @@ export default function salonBooking(db) {
 
    async function findStylistsForTreatment(treatmentId){
     
-    const findStylists = await db.oneOrNone(`select * from booking where client_id = $1`, [clientId])
+    const findStylists = return await db.manyOrNone(`select * from booking join stylist on booking.stylist_id = stylist.id where treatment_id = $1`, [treatmentId]);
         return findStylists;
 }
+
+   async function findAllBookings({date, time}){
+    
+    const allbooking = await db.oneOrNone(`select * from booking where client_id = $1`, [date,time])
+     
+        return allbooking;
+}
+   async function totalIncomeForDay(date){
+    
+    const totalIncome = return await db.manyOrNone(`select * from booking join treatment on booking.stylist_id = stylist.id where treatment_id = $1`, [date]);
+        return totalIncome;
+}
+
+   async function mostValuebleClient(){
+    
+    const mostValue = return await db.manyOrNone(`select * from booking join treatment on booking.stylist_id = stylist.id where treatment_id = $1`, [date]);
+        return mostValue;
+}
+
+  async function totalCommission(date, stylistId)(){
+    
+    const mostValue = return await db.manyOrNone(`select * from booking join treatment on booking.stylist_id = stylist.id where treatment_id = $1`, [date]);
+        return mostValue;
+}
+
+
+
+
+
+
+
 
 
 

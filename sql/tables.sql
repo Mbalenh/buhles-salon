@@ -1,16 +1,16 @@
--- Table create scripts here
+
 create table client (
 	id serial not null primary key,
 	first_name text not null,
     last_name text not null,
-     phone_number varchar(10) NOT NULL UNIQUE,
+     phone_number varchar(10) NOT NULL UNIQUE
 );
 
 create table treatment (
 	id serial not null primary key,
 	type  text not null,
     code text not null,
-   price int not null,
+   price MONEY
    
 );
 create table stylist (
@@ -18,7 +18,7 @@ create table stylist (
 	first_name text not null,
     last_name text not null,
 	phone_number varchar(10) NOT NULL UNIQUE,
-	commission_percentage int not null
+	commission_percentage NUMERIC(3,2)
 
 );
 
@@ -31,8 +31,9 @@ create table booking(
     stylist_id  int not null,
     foreign key (treatment_id ) references treatment(id),
     foreign key (client_id) references client(id),
-    foreign key (stylist_id) references stylist(id),
+    foreign key (stylist_id) references stylist(id)
 
 );
+
 
 

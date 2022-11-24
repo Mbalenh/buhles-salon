@@ -26,10 +26,10 @@ describe("The Booking Salon", function () {
 
         const treatments = await booking.findAllTreatments();
 
-         assert.deepEqual([{code: 'ped',id: 1,price: '175',type: 'Pedicure'},
-            {code: 'man',id: 2,price: '215',type: 'Manicure'},
-            {code: 'mak',id: 3,price: '185',type: 'Make up'},
-            {code: 'Bro',id: 4,price: '240',type: 'Brows & Lashes'}], treatments);
+         assert.deepEqual([{code: 'ped',id: 1,price: 'R175',type: 'Pedicure'},
+            {code: 'man',id: 2,price: 'R215',type: 'Manicure'},
+            {code: 'mak',id: 3,price: 'R185',type: 'Make up'},
+            {code: 'Bro',id: 4,price: 'R240',type: 'Brows & Lashes'}], treatments);
     });
 
     it("should be able to find a stylist", async function () {
@@ -49,10 +49,10 @@ describe("The Booking Salon", function () {
 
     it("should be able to get client booking(s)", async function () {
 
-        const client1 = await booking.findClient("0796895031");
-        const client2 = await booking.findClient("0796895501");
+        const client1 = await booking.findClient("0796895101");
+        const client2 = await booking.findClient("0796899001");
         
-        const treatment1 = await booking.findTreatment("Bro");
+        const treatment1 = await booking.findTreatment("ped");
         const treatment2 = await booking.findTreatment("mak");
 
         await booking.booking(treatment1.id, client1.id, date, time);
@@ -61,15 +61,16 @@ describe("The Booking Salon", function () {
 
         const bookings = await booking.findAllBookings(client);
 
-        assert.equal([], clientBooking)
+        assert.equal([{booking_date:'2022-02-27',booking_time:'07:00',id:'1',id:'1',id:'2'},
+            {booking_date:'2022-02-27',booking_time:'10:00',id:'2',id:'1',id:'2'}], clientBooking)
     })
 
     it("should be able to get bookings for a date", async function () {
         const client1 = await booking.findClient("0796895031");
         const client2 = await booking.findClient("0796895201");
 
-        const treatment1 = await booking.findTreatment("man");
-        const treatment2 = await booking.findTreatment("ped");
+        const treatment1 = await booking.findTreatment("ped");
+        const treatment2 = await booking.findTreatment("man");
 
         await booking.booking(treatment1.id, client1.id, date, time);
         await booking.booking(treatment2.id, client1.id, date, time);
@@ -77,7 +78,8 @@ describe("The Booking Salon", function () {
 
         const bookings = await booking.findAllBookings({date, time});
 
-        assert.equal([], bookings);
+        assert.equal([{booking_date:'2022-02-27',booking_time:'07:00',id:'1',id:'1',id:'2'},
+            {booking_date:'2022-02-27',booking_time:'07:00',id:'2',id:'1',id:'2'}], bookings);
 
     });
 

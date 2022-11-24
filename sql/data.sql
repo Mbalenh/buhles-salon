@@ -7,7 +7,7 @@ insert into treatment (type,code,price) values ('Brows & Lashes','bro', R240);
 
 
 INSERT INTO client(first_name, last_name, phone_number)
-VALUES('mbali', 'smith', '0796895001'),
+VALUES('mbali', 'smith', '0796895101'),
 	('makho', 'brown', '0766895001'),
 	('kay', 'smith', '0736895021'),
 	('pretty', 'xaba', '0796895031'),

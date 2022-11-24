@@ -1,8 +1,8 @@
 
-insert into treatment (type,code,price) values ('Pedicure','ped',175);
-insert into treatment (type,code,price) values ('Manicure','man' ,215);
-insert into treatment (type,code,price) values ('Make up ','mak',185.00);
-insert into treatment (type,code,price) values ('Brows & Lashes','bro',240.00);
+insert into treatment (type,code,price) values ('Pedicure','ped',R175);
+insert into treatment (type,code,price) values ('Manicure','man' ,R215);
+insert into treatment (type,code,price) values ('Make up ','mak', R185);
+insert into treatment (type,code,price) values ('Brows & Lashes','bro', R240);
 
 
 
@@ -23,12 +23,12 @@ VALUES('sam', 'smith', '0796895001',0.07),
 	('pretty', 'rose', '0796895131',0.20);
 
 
-INSERT INTO booking(booking_date,booking_time)
-VALUES('2022-02-27', '07:00'),
-('2022-02-27', '09:00'),
-('2022-02-27', '08:00'),
-('2022-02-27', '03:00'),
-('2022-02-27', '10:00'),
-('2022-02-27', '09:00');
+INSERT INTO booking(booking_date,booking_time,treatment_id,client_id,stylist_id)
+VALUES('2022-02-27', '07:00','1','1','2'),
+('2022-02-27', '09:00','1','3','4'),
+('2022-02-27', '08:00','2','1','3'),
+('2022-02-27', '03:00','1','4','2'),
+('2022-02-27', '10:00','3','5','2'),
+('2022-02-27', '0:00','1','1','2');
 
       

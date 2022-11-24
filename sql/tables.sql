@@ -3,7 +3,7 @@ create table client (
 	id serial not null primary key,
 	first_name text not null,
     last_name text not null,
-     phone_number int not null,
+     phone_number varchar(10) NOT NULL UNIQUE,
 );
 
 create table treatment (
@@ -17,7 +17,7 @@ create table stylist (
 	id serial not null primary key,
 	first_name text not null,
     last_name text not null,
-	phone_number int not null,
+	phone_number varchar(10) NOT NULL UNIQUE,
 	commission_percentage int not null
 
 );

@@ -1,8 +1,8 @@
 
-insert into treatment (type,code,price) values ('Pedicure','ped',R175);
-insert into treatment (type,code,price) values ('Manicure','man' ,R215);
-insert into treatment (type,code,price) values ('Make up ','mak', R185);
-insert into treatment (type,code,price) values ('Brows & Lashes','bro', R240);
+insert into treatment (type,code,price) values ('Pedicure','ped',175);
+insert into treatment (type,code,price) values ('Manicure','man' ,215);
+insert into treatment (type,code,price) values ('Make up ','mak', 185.00);
+insert into treatment (type,code,price) values ('Brows & Lashes','bro', 240.00);
 
 
 

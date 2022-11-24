@@ -52,23 +52,34 @@ export default function salonBooking(db) {
      
         return allbooking;
 }
-   async function totalIncomeForDay(date){
-    
-    const totalIncome = return await db.manyOrNone(`select * from booking join treatment on booking.stylist_id = stylist.id where treatment_id = $1`, [date]);
-        return totalIncome;
-}
-
-   async function mostValuebleClient(){
-    
-    const mostValue = return await db.manyOrNone(`select * from booking join treatment on booking.stylist_id = stylist.id where treatment_id = $1`, [date]);
-        return mostValue;
-}
-
-  async function totalCommission(date, stylistId)(){
-    
-    const mostValue = return await db.manyOrNone(`select * from booking join treatment on booking.stylist_id = stylist.id where treatment_id = $1`, [date]);
-        return mostValue;
-}
+}async function totalIncomeForDay(date) {
+  
+        let db_results = await db.oneOrNone(
+          "select sum(price), booking_date from treatment join booking on treatment.id = booking.treatment_id where booking_date = $1 group by booking_date",
+          [date]
+        );
+        return db_results;
+    }
+    async function mostValuableClient() {
+  
+        let db_results = await db.manyOrNone(
+          "select sum(price),client_id from booking join treatment on booking.treatment_id = treatment.id group by client_id"
+        );
+        let price = 0;
+        let valuableClientId = {};
+        db_results.forEach((item) => {
+          if (item.sum > price) {
+            price = item.sum;
+            valuableClientId = { id: item.client_id };
+          }
+        });
+        let client = await db.oneOrNone(
+          "select first_name from client where id = $1",
+          [valuableClientId.id]
+        );
+        return client;
+  
+    }
 
 
 

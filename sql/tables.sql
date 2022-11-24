@@ -10,7 +10,7 @@ create table treatment (
 	id serial not null primary key,
 	type  text not null,
     code text not null,
-   price MONEY
+   price decimal not null
    
 );
 create table stylist (
